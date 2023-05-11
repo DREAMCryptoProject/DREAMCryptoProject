@@ -41,7 +41,58 @@ const contractABI = [
 			}
 		],
 		"stateMutability": "nonpayable",
-		"type": "function"
+		"type": "function"const contractAddress = "0xf2ae7fe9b0e815fd95981af5551fa8115108ec74";
+const contractABI = [
+  // contract ABI goes here
+];
+
+const web3 = new Web3(Web3.givenProvider);
+const stakingContract = new web3.eth.Contract(contractABI, contractAddress);
+
+async function stakeTokens() {
+  const amount = document.getElementById("amount").value;
+  const accounts = await web3.eth.getAccounts();
+  await stakingContract.methods.stake(amount).send({ from: accounts[0] });
+}
+
+async function unstakeTokens() {
+  const accounts = await web3.eth.getAccounts();
+  await stakingContract.methods.unstake().send({ from: accounts[0] });
+}
+
+async function withdrawTokens() {
+  const accounts = await web3.eth.getAccounts();
+  await stakingContract.methods.withdraw().send({ from: accounts[0] });
+}
+
+async function getReward() {
+  const accounts = await web3.eth.getAccounts();
+  await stakingContract.methods.getReward().send({ from: accounts[0] });
+}
+
+async function updateAPY() {
+  const apy = document.getElementById("apy").value;
+  const accounts = await web3.eth.getAccounts();
+  await stakingContract.methods.setAPY(apy).send({ from: accounts[0] });
+}
+
+async function updateMaticToken() {
+  const maticTokenAddress = document.getElementById("matic-token-address").value;
+  const accounts = await web3.eth.getAccounts();
+  await stakingContract.methods.setMaticToken(maticTokenAddress).send({ from: accounts[0] });
+}
+
+async function getStakerInfo() {
+  const accounts = await web3.eth.getAccounts();
+  const stakerInfo = await stakingContract.methods.getStakerInfo(accounts[0]).call();
+  console.log(stakerInfo);
+}
+
+async function getPoolInfo() {
+  const poolInfo = await stakingContract.methods.getPoolInfo().call();
+  console.log(poolInfo);
+}
+
 	},
 	{
 		"inputs": [
