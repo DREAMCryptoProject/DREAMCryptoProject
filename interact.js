@@ -81,7 +81,7 @@ const abi = [
 	}
 ]
 ];
-const contractAddress = '0xE9F5bf1555e4229F85026F433322251675639B08'; // TODO: replace with your contract address
+const contractAddress = '0xf2ae7fe9b0e815fd95981af5551fa8115108ec74'; // TODO: replace with your contract address
 
 // Create a new instance of the contract object
 const contract = new web3.eth.Contract(abi, contractAddress);
