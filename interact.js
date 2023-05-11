@@ -1,231 +1,136 @@
 const contractAddress = "0xf2ae7fe9b0e815fd95981af5551fa8115108ec74";
 const contractABI = [
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "recipient",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "transfer",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"const contractAddress = "0xf2ae7fe9b0e815fd95981af5551fa8115108ec74";
-const contractABI = [
-  // contract ABI goes here
-];
-
-const web3 = new Web3(Web3.givenProvider);
-const stakingContract = new web3.eth.Contract(contractABI, contractAddress);
-
-async function stakeTokens() {
-  const amount = document.getElementById("amount").value;
-  const accounts = await web3.eth.getAccounts();
-  await stakingContract.methods.stake(amount).send({ from: accounts[0] });
-}
-
-async function unstakeTokens() {
-  const accounts = await web3.eth.getAccounts();
-  await stakingContract.methods.unstake().send({ from: accounts[0] });
-}
-
-async function withdrawTokens() {
-  const accounts = await web3.eth.getAccounts();
-  await stakingContract.methods.withdraw().send({ from: accounts[0] });
-}
-
-async function getReward() {
-  const accounts = await web3.eth.getAccounts();
-  await stakingContract.methods.getReward().send({ from: accounts[0] });
-}
-
-async function updateAPY() {
-  const apy = document.getElementById("apy").value;
-  const accounts = await web3.eth.getAccounts();
-  await stakingContract.methods.setAPY(apy).send({ from: accounts[0] });
-}
-
-async function updateMaticToken() {
-  const maticTokenAddress = document.getElementById("matic-token-address").value;
-  const accounts = await web3.eth.getAccounts();
-  await stakingContract.methods.setMaticToken(maticTokenAddress).send({ from: accounts[0] });
-}
-
-async function getStakerInfo() {
-  const accounts = await web3.eth.getAccounts();
-  const stakerInfo = await stakingContract.methods.getStakerInfo(accounts[0]).call();
-  console.log(stakerInfo);
-}
-
-async function getPoolInfo() {
-  const poolInfo = await stakingContract.methods.getPoolInfo().call();
-  console.log(poolInfo);
-}
-
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "sender",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "recipient",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "transferFrom",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	}
-];
-
-const web3 = new Web3(Web3.givenProvider);
-
-const stakingContract = new web3.eth.Contract([
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "recipient",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "transfer",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "sender",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "recipient",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "transferFrom",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	}
-], 0xf2ae7fe9b0e815fd95981af5551fa8115108ec74);
-
-async function stakeTokens() {
-  const amount = document.getElementById("amount").value;
-  const accounts = await web3.eth.getAccounts();
-  await stakingContract.methods.stake(amount).send({ from: accounts[0] });
-}
-
-async function unstakeTokens() {
-  const accounts = await web3.eth.getAccounts();
-  await stakingContract.methods.unstake().send({ from: accounts[0] });
-}
-
-async function getReward() {
-  const accounts = await web3.eth.getAccounts();
-  await stakingContract.methods.getReward().send({ from: accounts[0] });
-}
-
-async function updateAPY() {
-  const apy = document.getElementById("apy").value;
-  const accounts = await web3.eth.getAccounts();
-  await stakingContract.methods.setAPY(apy).send({ from: accounts[0] });
-}
-
-async function updateMaticToken() {
-  const maticTokenAddress = document.getElementById("matic-token-address").value;
-  const accounts = await web3.eth.getAccounts();
-  await stakingContract.methods.setMaticToken(maticTokenAddress).send({ from: accounts[0] });
-}
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "balanceOf",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "transfer",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "transferFrom",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "stake",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "unstake",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "withdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getReward",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_apy",
+        "type": "uint256"
+      }
+    ],
+    "name": "setAPY",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_maticToken",
+        "type": "address"
+      }
+    ],
+    "name": "setMaticToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+   
